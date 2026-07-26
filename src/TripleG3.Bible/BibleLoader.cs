@@ -244,8 +244,12 @@ public static class BibleLoader
 
     private static Bible LoadKingJamesVersion()
     {
-        var path = Path.Combine(AppContext.BaseDirectory, "kjv.json");
-        var json = File.ReadAllText(path);
-        return JsonSerializer.Deserialize<Bible>(json, options) ?? throw new InvalidDataException($"The Bible data in '{path}' is empty or invalid.");
+        const string resourceName = "TripleG3.Bible.kjv.json";
+        using var stream = typeof(BibleLoader).Assembly.GetManifestResourceStream(resourceName)
+            ?? throw new InvalidDataException($"The embedded Bible data resource '{resourceName}' was not found.");
+        using var reader = new StreamReader(stream);
+        var json = reader.ReadToEnd();
+        return JsonSerializer.Deserialize<Bible>(json, options)
+            ?? throw new InvalidDataException($"The embedded Bible data resource '{resourceName}' is empty or invalid.");
     }
 }

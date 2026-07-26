@@ -1,6 +1,6 @@
 # Repository instructions
 
-- 2026-07-25: Keep Bible JSON loading lazy and copy `kjv.json` to build/publish output so `BibleLoader.KJV` can load it at runtime.
+- 2026-07-25: Keep Bible JSON loading lazy and embed `kjv.json` as an assembly resource so runtime loading does not depend on an output file.
 - 2026-07-25: Expose Bible queries through `BibleLoader` and return `VerseReference` for verse results that need book and chapter context.
 - 2026-07-25: Bible query methods must not throw or return null; unmatched scalar queries return empty model records and collection queries return empty sequences.
 - 2026-07-25: Metadata queries expose Bible identity and book/testament chapter and verse counts through `BibleLoader`.
@@ -10,3 +10,4 @@
 - 2026-07-25: Keep `README.md` aligned with the public `BibleLoader` API, NuGet installation, development commands, and publishing workflow.
 - 2026-07-25: Range queries use standard zero-based C# `Range` semantics and return empty collections for invalid or unmatched ranges.
 - 2026-07-25: The NuGet package includes the repository `README.md`, `LICENSE`, and generated XML API documentation through project package metadata.
+- 2026-07-25: Include `kjv.json` in the NuGet package through the library assembly's embedded resource.
