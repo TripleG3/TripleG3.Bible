@@ -61,4 +61,29 @@ public sealed class BibleLoaderTests
         Assert.NotEmpty(results);
         Assert.Contains(results, result => result.Book.Book == "Gen" && result.Chapter.ChapterNumber == 1 && result.Verse.Number == 1);
     }
+
+    [Fact]
+    public void GetChaptersReturnsRequestedRange()
+    {
+        var chapters = BibleLoader.GetChapters("Gen", 0..3).ToArray();
+
+        Assert.Equal([1, 2, 3], chapters.Select(chapter => chapter.ChapterNumber));
+    }
+
+    [Fact]
+    public void GetVersesReturnsRequestedRange()
+    {
+        var verses = BibleLoader.GetVerses("John", 3, 15..18).ToArray();
+
+        Assert.Equal([16, 17, 18], verses.Select(reference => reference.Verse.Number));
+        Assert.All(verses, reference => Assert.Equal("John", reference.Book.EnglishName));
+        Assert.All(verses, reference => Assert.Equal(3, reference.Chapter.ChapterNumber));
+    }
+
+    [Fact]
+    public void RangeQueriesReturnEmptyForUnknownValues()
+    {
+        Assert.Empty(BibleLoader.GetChapters("Unknown", 0..3));
+        Assert.Empty(BibleLoader.GetVerses("John", 999, 0..3));
+    }
 }

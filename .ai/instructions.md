@@ -7,3 +7,6 @@
 - 2026-07-25: Expose metadata through the single public `BibleLoader.GetMetadata` query returning `Metadata`; keep component count helpers private.
 - 2026-07-25: NuGet publishing targets `src/TripleG3.Bible/TripleG3.Bible.csproj`; this repository has no test project, so the publish workflow restores, builds, packs, and publishes the library directly.
 - 2026-07-25: Unit tests live in `tests/TripleG3.Bible.Tests` and the NuGet workflow tests that project before packing.
+- 2026-07-25: Keep `README.md` aligned with the public `BibleLoader` API, NuGet installation, development commands, and publishing workflow.
+- 2026-07-25: Range queries use standard zero-based C# `Range` semantics and return empty collections for invalid or unmatched ranges.
+- 2026-07-25: The NuGet package includes the repository `README.md`, `LICENSE`, and generated XML API documentation through project package metadata.
