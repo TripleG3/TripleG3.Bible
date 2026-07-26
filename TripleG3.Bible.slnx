@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/tests/">
+    <Project Path="tests/TripleG3.Bible.Tests/TripleG3.Bible.Tests.csproj" />
+  </Folder>
+  <Project Path="src/TripleG3.Bible/TripleG3.Bible.csproj" />
+</Solution>
